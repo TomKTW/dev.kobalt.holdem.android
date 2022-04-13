@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dev.kobalt.holdem.android.view.StackView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <dev.kobalt.holdem.android.view.LabelInputView
+        android:id="@+id/nameInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@color/black_a50"
+        android:gravity="center"
+        android:hint="Name"
+        android:padding="8dp" />
+
+    <dev.kobalt.holdem.android.view.LabelButtonView
+        android:id="@+id/nameSubmitButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@color/black_a50"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="Continue"
+        android:textColor="@color/white" />
+
+</dev.kobalt.holdem.android.view.StackView>

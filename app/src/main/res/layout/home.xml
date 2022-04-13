@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dev.kobalt.holdem.android.view.StackView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/green_800"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/nameFormContainer"
+        layout="@layout/home_name_form"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/roomFormContainer"
+        layout="@layout/home_room_form"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/tableContainer"
+        layout="@layout/home_table"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:visibility="gone" />
+
+</dev.kobalt.holdem.android.view.StackView>

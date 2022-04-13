@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dev.kobalt.holdem.android.view.StackView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="4dp">
+
+    <dev.kobalt.holdem.android.view.LabelView
+        android:id="@+id/nameLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="4dp"
+        android:text="Name"
+        android:textColor="@color/white"
+        android:textSize="12sp" />
+
+    <dev.kobalt.holdem.android.view.StackView
+        android:id="@+id/cardStack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" />
+
+    <dev.kobalt.holdem.android.view.LabelView
+        android:id="@+id/actionLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="4dp"
+        android:text="Action"
+        android:textColor="@color/white"
+        android:textSize="12sp" />
+
+</dev.kobalt.holdem.android.view.StackView>
