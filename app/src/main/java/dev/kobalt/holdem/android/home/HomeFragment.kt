@@ -4,6 +4,7 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat.getSystemService
@@ -121,8 +122,8 @@ class HomeFragment : BaseFragment<HomeBinding>() {
             roomFormContainer.apply {
                 joinButton.setOnClickListener {
                     joinInputContainer.isVisible = true
-                    joinButton.isVisible = false
-                    createButton.isVisible = false
+                    joinButton.isInvisible = true
+                    createButton.isInvisible = true
                     roomIdInput.requestFocus()
                     inputMethodManager.showSoftInput(
                         roomFormContainer.roomIdInput,
@@ -131,8 +132,16 @@ class HomeFragment : BaseFragment<HomeBinding>() {
                 }
                 joinBackButton.setOnClickListener {
                     joinInputContainer.isVisible = false
-                    joinButton.isVisible = true
-                    createButton.isVisible = true
+                    joinButton.isInvisible = false
+                    createButton.isInvisible = false
+                }
+                roomIdInput.setOnEditorActionListener { v, actionId, event ->
+                    if (actionId == EditorInfo.IME_ACTION_DONE) {
+                        joinInputButton.performClick()
+                        true
+                    } else {
+                        false
+                    }
                 }
                 joinInputButton.setOnClickListener {
                     inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
