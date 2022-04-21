@@ -77,7 +77,7 @@ class HomeFragment : BaseFragment<HomeBinding>() {
                                 }, dp(48), dp(48))
                             }
                         }
-                        titleLabel.text = "Room ${it.currentRoom?.uid?.substring(0, 6)}..."
+                        titleLabel.text = "Room ${it.currentRoom?.uid ?: "-"}"
                         subtitleLabel.text = when {
                             it.currentTable?.phase != null -> it.currentTable.phase
                             ((it.currentRoom?.players.orEmpty().size) > 1) -> "Ready to play."
@@ -104,13 +104,20 @@ class HomeFragment : BaseFragment<HomeBinding>() {
             }
         }
         viewBinding?.apply {
+            tableContainer.copyRoomIdButton.setOnLongClickListener {
+                showToast("Copy Room ID to clipboard", view = tableContainer.copyRoomIdButton); true
+            }
             tableContainer.copyRoomIdButton.setOnClickListener {
                 viewModel.stateFlow.replayCache.firstOrNull()?.currentRoom?.uid?.let {
                     val clipboard: ClipboardManager? =
                         getSystemService(requireContext(), ClipboardManager::class.java)
                     val clip = ClipData.newPlainText("Room ID", it)
                     clipboard?.setPrimaryClip(clip)
+                    showToast("Room ID has been copied to clipboard.")
                 }
+            }
+            tableContainer.leaveButton.setOnLongClickListener {
+                showToast("Leave room", view = tableContainer.leaveButton); true
             }
             nameFormContainer.apply {
                 nameInput.setText(application.preferences.name)
@@ -130,10 +137,14 @@ class HomeFragment : BaseFragment<HomeBinding>() {
                         InputMethodManager.SHOW_IMPLICIT
                     )
                 }
+                joinBackButton.setOnLongClickListener {
+                    showToast("Return", view = joinBackButton); true
+                }
                 joinBackButton.setOnClickListener {
                     joinInputContainer.isVisible = false
                     joinButton.isInvisible = false
                     createButton.isInvisible = false
+                    inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
                 }
                 roomIdInput.setOnEditorActionListener { v, actionId, event ->
                     if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -142,6 +153,9 @@ class HomeFragment : BaseFragment<HomeBinding>() {
                     } else {
                         false
                     }
+                }
+                joinInputButton.setOnLongClickListener {
+                    showToast("Join room", view = joinInputButton); true
                 }
                 joinInputButton.setOnClickListener {
                     inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)

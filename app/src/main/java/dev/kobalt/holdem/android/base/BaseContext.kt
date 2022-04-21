@@ -9,6 +9,8 @@ import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.util.TypedValue
+import android.view.Gravity
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.annotation.*
@@ -107,8 +109,12 @@ interface BaseContext {
         }
     }
 
-    fun showToast(message: String, length: Int = Toast.LENGTH_SHORT) {
-        Toast.makeText(requestContext(), message, Toast.LENGTH_SHORT).show()
+    fun showToast(message: String, length: Int = Toast.LENGTH_SHORT, view: View? = null) {
+        Toast.makeText(requestContext(), message, Toast.LENGTH_SHORT).apply {
+            view?.let {
+                setGravity(Gravity.TOP or Gravity.START, it.left, it.top + view.height)
+            }
+        }.show()
     }
 
     fun TypedArray.getValueString(@StyleableRes index: Int): String? {
