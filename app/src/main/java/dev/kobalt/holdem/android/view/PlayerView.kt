@@ -18,7 +18,8 @@ class PlayerView @JvmOverloads constructor(
 
     fun apply(entity: StateEntity.Player) {
         viewBinding.nameLabel.text = if (entity.money != null) {
-            "${entity.name} (${entity.money})"
+            "${entity.name} (${entity.money})" + " (D)".takeIf { entity.tags.contains("dealer") }
+                .orEmpty()
         } else {
             entity.name
         }
@@ -30,17 +31,20 @@ class PlayerView @JvmOverloads constructor(
                 }
             }, dp(48), dp(48))
         }
-        viewBinding.actionLabel.text = if (entity.betMoney != null) {
-            "${entity.action} (${entity.betMoney})"
-        } else {
-            entity.action
+        viewBinding.actionLabel.text = when {
+            entity.action == "Idle" && (entity.betMoney == 0 || entity.betMoney == null) -> {
+                ""
+            }
+            entity.betMoney == 0 || entity.betMoney == null -> {
+                entity.action
+            }
+            else -> {
+                "${entity.action} (${entity.betMoney})"
+            }
         }
         viewBinding.actionLabel.isVisible = entity.action.orEmpty().isNotEmpty()
         if (entity.tags.contains("current")) {
             background = ColorDrawable(getResourceColor(R.color.black_a50))
-        }
-        if (entity.tags.contains("dealer")) {
-
         }
         if (entity.tags.contains("winner")) {
             background = ColorDrawable(getResourceColor(R.color.white_a50))

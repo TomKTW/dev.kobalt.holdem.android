@@ -1,10 +1,9 @@
 package dev.kobalt.holdem.android.home
 
-import com.zhuinden.simplestackextensions.fragments.DefaultFragmentKey
+import dev.kobalt.holdem.android.base.BaseKey
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class HomeKey(private val placeholder: String = "") :
-    DefaultFragmentKey() { // generate reliable `toString()` for no-args data class
+data class HomeKey(private val placeholder: String = "") : BaseKey() {
     override fun instantiateFragment() = HomeFragment()
 }

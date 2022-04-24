@@ -12,7 +12,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
 import java.lang.reflect.ParameterizedType
 
-
 abstract class BaseDialogFragment<V : ViewBinding> : DialogFragment(), BaseContext {
 
     override fun requestContext(): Context = requireContext().applicationContext

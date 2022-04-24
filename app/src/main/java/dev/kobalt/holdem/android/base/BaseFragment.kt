@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
 import com.zhuinden.simplestackextensions.fragments.KeyedFragment
+import com.zhuinden.simplestackextensions.fragmentsktx.backstack
 import java.lang.reflect.ParameterizedType
 
 abstract class BaseFragment<V : ViewBinding> : KeyedFragment(), BaseContext {
@@ -42,6 +43,10 @@ abstract class BaseFragment<V : ViewBinding> : KeyedFragment(), BaseContext {
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
+    }
+
+    open fun onBackPressed(): Boolean {
+        return backstack.goBack()
     }
 
     val viewLifecycleScope get() = viewLifecycleOwner.lifecycleScope

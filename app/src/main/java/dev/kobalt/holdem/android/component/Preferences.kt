@@ -7,6 +7,10 @@ class Preferences(private val application: MainApplication) {
 
     val native get() = PreferenceManager.getDefaultSharedPreferences(application.native)!!
 
+    var server: String?
+        get() = get("server")
+        set(value) = set("server", value)
+
     var name: String?
         get() = get("name")
         set(value) = set("name", value)

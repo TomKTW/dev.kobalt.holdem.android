@@ -1,5 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Workspaces/Projects/dev/kobalt/rework/holdem/android/app/src/main/res/drawable/ic_baseline_share_24.xml" value="0.354" />
+        <entry key="..\:/Workspaces/Projects/dev/kobalt/rework/holdem/android/app/src/main/res/drawable/ic_baseline_wifi_tethering_24.xml" value="0.354" />
+        <entry key="..\:/Workspaces/Projects/dev/kobalt/rework/holdem/android/app/src/main/res/layout/about.xml" value="0.16742654508611957" />
+        <entry key="..\:/Workspaces/Projects/dev/kobalt/rework/holdem/android/app/src/main/res/layout/home.xml" value="0.17147922998986828" />
+        <entry key="..\:/Workspaces/Projects/dev/kobalt/rework/holdem/android/app/src/main/res/layout/home_main.xml" value="0.16742654508611957" />
+        <entry key="..\:/Workspaces/Projects/dev/kobalt/rework/holdem/android/app/src/main/res/layout/home_room_form.xml" value="0.25" />
+        <entry key="..\:/Workspaces/Projects/dev/kobalt/rework/holdem/android/app/src/main/res/layout/home_server_form.xml" value="0.16742654508611957" />
+        <entry key="..\:/Workspaces/Projects/dev/kobalt/rework/holdem/android/app/src/main/res/layout/legal.xml" value="0.16742654508611957" />
+        <entry key="..\:/Workspaces/Projects/dev/kobalt/rework/holdem/android/app/src/main/res/layout/options.xml" value="0.16742654508611957" />
+        <entry key="..\:/Workspaces/Projects/dev/kobalt/rework/holdem/android/app/src/main/res/layout/play.xml" value="0.16742654508611957" />
+        <entry key="..\:/Workspaces/Projects/dev/kobalt/rework/holdem/android/app/src/main/res/layout/play_connect.xml" value="0.1105072463768116" />
+        <entry key="..\:/Workspaces/Projects/dev/kobalt/rework/holdem/android/app/src/main/res/layout/play_disconnect.xml" value="0.16742654508611957" />
+        <entry key="..\:/Workspaces/Projects/dev/kobalt/rework/holdem/android/app/src/main/res/layout/play_host.xml" value="0.1105072463768116" />
+        <entry key="..\:/Workspaces/Projects/dev/kobalt/rework/holdem/android/app/src/main/res/layout/play_join.xml" value="0.16742654508611957" />
+        <entry key="..\:/Workspaces/Projects/dev/kobalt/rework/holdem/android/app/src/main/res/layout/play_leave.xml" value="0.16742654508611957" />
+        <entry key="..\:/Workspaces/Projects/dev/kobalt/rework/holdem/android/app/src/main/res/layout/play_message.xml" value="0.16742654508611957" />
+        <entry key="..\:/Workspaces/Projects/dev/kobalt/rework/holdem/android/app/src/main/res/layout/play_name.xml" value="0.16742654508611957" />
+        <entry key="..\:/Workspaces/Projects/dev/kobalt/rework/holdem/android/app/src/main/res/layout/play_rooms.xml" value="0.16742654508611957" />
+        <entry key="..\:/Workspaces/Projects/dev/kobalt/rework/holdem/android/app/src/main/res/layout/play_table.xml" value="0.16742654508611957" />
+        <entry key="..\:/Workspaces/Projects/dev/kobalt/rework/holdem/android/app/src/main/res/layout/view_player.xml" value="0.1" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
