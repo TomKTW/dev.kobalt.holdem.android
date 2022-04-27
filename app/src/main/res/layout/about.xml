@@ -23,16 +23,59 @@
             app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
 
         <dev.kobalt.holdem.android.view.LabelView
-            android:id="@+id/headerTitle"
+            android:id="@+id/headerTitleLabel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="start"
-            android:text="About"
+            android:text="@string/about_title"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
 
     </dev.kobalt.holdem.android.view.StackView>
+
+    <dev.kobalt.holdem.android.view.VerticalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <dev.kobalt.holdem.android.view.StackView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <dev.kobalt.holdem.android.view.ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_gravity="center"
+                android:layout_margin="32dp"
+                app:srcCompat="@drawable/ic_baseline_cards_playing_24"
+                app:tint="@color/white" />
+
+            <dev.kobalt.holdem.android.view.LabelView
+                android:id="@+id/appLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/app_name"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <dev.kobalt.holdem.android.view.LabelView
+                android:id="@+id/versionLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/app_version"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </dev.kobalt.holdem.android.view.StackView>
+
+
+    </dev.kobalt.holdem.android.view.VerticalScrollView>
 
 </dev.kobalt.holdem.android.view.StackView>

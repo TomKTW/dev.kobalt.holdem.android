@@ -16,7 +16,7 @@
         android:layout_marginBottom="8dp"
         android:layout_weight="1"
         app:iconImage="@drawable/ic_baseline_groups_24"
-        app:titleLabel="Create room" />
+        app:titleLabel="@string/play_room_create_action" />
 
     <dev.kobalt.holdem.android.view.LargeImageLabelButtonView
         android:id="@+id/joinButton"
@@ -28,6 +28,6 @@
         android:layout_marginBottom="16dp"
         android:layout_weight="1"
         app:iconImage="@drawable/ic_baseline_group_add_24"
-        app:titleLabel="Join room" />
+        app:titleLabel="@string/play_room_join_action" />
 
 </dev.kobalt.holdem.android.view.StackView>

@@ -19,6 +19,7 @@ open class LabelButtonView @JvmOverloads constructor(
         onInit(attrs, defStyleAttr)
     }
 
+    @Suppress("UNUSED_PARAMETER")
     private fun onInit(attrs: AttributeSet?, defStyleAttr: Int) {
     }
 

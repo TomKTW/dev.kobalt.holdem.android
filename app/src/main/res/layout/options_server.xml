@@ -16,7 +16,7 @@
         android:orientation="horizontal">
 
         <dev.kobalt.holdem.android.view.ImageButtonView
-            android:id="@+id/closeButton"
+            android:id="@+id/cancelButton"
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:padding="16dp"
@@ -29,19 +29,35 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="start"
-            android:text="@string/play_message_title"
+            android:text="@string/options_server_title"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
 
+        <dev.kobalt.holdem.android.view.ImageButtonView
+            android:id="@+id/submitButton"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:padding="16dp"
+            android:tint="@color/white"
+            app:srcCompat="@drawable/ic_baseline_check_24" />
+
     </dev.kobalt.holdem.android.view.StackView>
 
-    <dev.kobalt.holdem.android.view.LabelView
-        android:id="@+id/messageLabel"
+    <dev.kobalt.holdem.android.view.LabelInputView
+        android:id="@+id/serverInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/black_a50"
         android:gravity="center"
-        android:textColor="@color/white" />
+        android:hint="@string/options_server_input_hint"
+        android:inputType="text"
+        android:padding="8dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white_a50" />
 
 </dev.kobalt.holdem.android.view.StackView>

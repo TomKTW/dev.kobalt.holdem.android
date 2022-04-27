@@ -21,12 +21,14 @@ android {
             debuggable true
             minifyEnabled false
             shrinkResources false
+            resValue "string", "app_version", '2022.00'
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         release {
             debuggable false
             minifyEnabled true
             shrinkResources true
+            resValue "string", "app_version", '2022.00'
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -68,11 +70,11 @@ dependencies {
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
     // Simple Logging Facade
     implementation "org.slf4j:slf4j-android:1.7.32"
-    // Ktor HTTP Android Client
-    implementation "io.ktor:ktor-client-android:1.6.1"
     // Ktor HTTP Logging
     implementation "io.ktor:ktor-client-logging:1.6.1"
+    // Ktor HTTP Client OkHttp
     implementation "io.ktor:ktor-client-okhttp:1.6.1"
+    // Ktor HTTP Client Websockets
     implementation "io.ktor:ktor-client-websockets:1.6.1"
     // KotlinX Coroutines Core
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0"

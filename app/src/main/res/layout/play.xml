@@ -61,7 +61,7 @@
     </dev.kobalt.holdem.android.view.StackView>
 
     <include
-        android:id="@+id/connectFormContainer"
+        android:id="@+id/serverContainer"
         layout="@layout/play_server"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -69,7 +69,7 @@
         android:visibility="gone" />
 
     <include
-        android:id="@+id/roomsContainer"
+        android:id="@+id/roomContainer"
         layout="@layout/play_room"
         android:layout_width="match_parent"
         android:layout_height="0dp"

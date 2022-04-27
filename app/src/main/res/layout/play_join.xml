@@ -24,12 +24,12 @@
             app:srcCompat="@drawable/ic_baseline_close_24" />
 
         <dev.kobalt.holdem.android.view.LabelView
-            android:id="@+id/headerTitle"
+            android:id="@+id/headerTitleLabel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="start"
-            android:text="Join room"
+            android:text="@string/play_join_title"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -54,7 +54,7 @@
         android:layout_marginBottom="8dp"
         android:background="@color/black_a50"
         android:gravity="center"
-        android:hint="Enter Room ID here"
+        android:hint="@string/play_join_id_input_hint"
         android:inputType="text"
         android:padding="8dp"
         android:textColor="@color/white"

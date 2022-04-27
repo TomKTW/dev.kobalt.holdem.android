@@ -27,6 +27,7 @@ open class LargeImageLabelButtonView @JvmOverloads constructor(
         onInit(context, attrs, defStyleAttr)
     }
 
+    @Suppress("UNUSED_PARAMETER")
     private fun onInit(context: Context, attrs: AttributeSet?, defStyleAttr: Int) {
         orientation = VERTICAL
         gravity = Gravity.CENTER

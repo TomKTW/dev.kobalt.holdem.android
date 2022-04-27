@@ -18,6 +18,9 @@ class MainApplication(val native: Native) {
         override fun onCreate() {
             super.onCreate()
             instance = MainApplication(this)
+            if (instance.preferences.name == null) {
+                instance
+            }
         }
 
     }
@@ -27,7 +30,10 @@ class MainApplication(val native: Native) {
         expectSuccess = false
     }
 
-    val preferences = Preferences(this)
+    val preferences = Preferences(this).apply {
+        if (name == null) name = "Player"
+        if (server == null) server = "wss://tom.kobalt.dev/holdem/server/"
+    }
 
 }
 

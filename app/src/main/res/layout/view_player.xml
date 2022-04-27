@@ -19,7 +19,6 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="2dp"
-        android:text="Name"
         android:textColor="@color/white"
         android:textSize="12sp" />
 
@@ -29,7 +28,6 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="2dp"
-        android:text="Action"
         android:textColor="@color/white"
         android:textSize="12sp" />
 

@@ -38,10 +38,10 @@ class PlayConnectDialogFragment : BaseDialogFragment<PlayConnectBinding>() {
                 inputMethodManager.showSoftInput(urlInput, InputMethodManager.SHOW_IMPLICIT)
             }
             urlInput.apply {
-                setText("wss://tom.kobalt.dev/holdem/server/")
+                setText(application.preferences.server)
             }
             nameInput.apply {
-                setText("Player")
+                setText(application.preferences.name)
             }
             cancelButton.apply {
                 setOnClickListener { dismiss() }

@@ -16,7 +16,7 @@ import kotlinx.serialization.json.*
 class PlayViewModel : BaseViewModel() {
 
     val pageFlow = MutableSharedFlow<PlayFragment.Page>(replay = 1).apply {
-        viewModelScope.launch { emit(PlayFragment.Page.ConnectForm) }
+        viewModelScope.launch { emit(PlayFragment.Page.Server) }
     }
 
     val messageFlow = MutableSharedFlow<String?>(replay = 1).apply {

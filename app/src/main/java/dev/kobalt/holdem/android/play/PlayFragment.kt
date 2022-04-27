@@ -11,6 +11,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import com.caverock.androidsvg.SVG
 import com.caverock.androidsvg.SVGImageView
+import dev.kobalt.holdem.android.R
 import dev.kobalt.holdem.android.base.BaseFragment
 import dev.kobalt.holdem.android.databinding.PlayBinding
 import dev.kobalt.holdem.android.state.HoldemCard
@@ -25,23 +26,23 @@ class PlayFragment : BaseFragment<PlayBinding>() {
         viewLifecycleScope.launchWhenCreated {
             viewModel.pageFlow.collect {
                 viewBinding?.apply {
-                    connectFormContainer.root.isVisible = it == Page.ConnectForm
-                    roomsContainer.root.isVisible = it == Page.RoomForm
+                    serverContainer.root.isVisible = it == Page.Server
+                    roomContainer.root.isVisible = it == Page.Room
                     tableContainer.root.isVisible = it == Page.Table
                     shareButton.isVisible = it == Page.Table
                     when (it) {
-                        Page.ConnectForm -> {
-                            titleLabel.text = "Play"
+                        Page.Server -> {
+                            titleLabel.text = getResourceString(R.string.play_server_title)
                             subtitleLabel.isVisible = false
                             subtitleLabel.text = null
                         }
-                        Page.RoomForm -> {
-                            titleLabel.text = "Server"
+                        Page.Room -> {
+                            titleLabel.text = getResourceString(R.string.play_room_title)
                             subtitleLabel.isVisible = false
                             subtitleLabel.text = null
                         }
                         Page.Table -> {
-                            titleLabel.text = "Room"
+                            titleLabel.text = getResourceString(R.string.play_table_title)
                             subtitleLabel.isVisible = true
                             subtitleLabel.text =
                                 "${viewModel.stateFlow.replayCache.firstOrNull()?.currentRoom?.uid}"
@@ -62,12 +63,12 @@ class PlayFragment : BaseFragment<PlayBinding>() {
         viewLifecycleScope.launchWhenCreated {
             viewModel.stateFlow.collect {
                 when {
-                    viewModel.session == null -> viewModel.pageFlow.emit(Page.ConnectForm)
+                    viewModel.session == null -> viewModel.pageFlow.emit(Page.Server)
                     viewModel.stateFlow.replayCache.firstOrNull()?.currentRoom != null -> viewModel.pageFlow.emit(
                         Page.Table
                     )
                     else -> viewModel.pageFlow.emit(
-                        Page.RoomForm
+                        Page.Room
                     )
                 }
                 viewBinding?.apply {
@@ -91,13 +92,6 @@ class PlayFragment : BaseFragment<PlayBinding>() {
                                 }, dp(48), dp(48))
                             }
                         }
-                        /*titleLabel.text = "Room ${it.currentRoom?.uid ?: "-"}"
-                        subtitleLabel.text = when {
-                            it.currentTable?.phase != null -> it.currentTable.phase
-                            ((it.currentRoom?.players.orEmpty().size) > 1) -> "Ready to play."
-                            else -> "Waiting for players..."
-                        }*/
-                        //backButton.isVisible = it.currentRoom?.actions?.contains("Leave") == true
                         startButton.isVisible = it.currentRoom?.actions?.contains("Start") == true
                         foldButton.isVisible = it.currentTable?.actions?.contains("Fold") == true
                         checkButton.isVisible = it.currentTable?.actions?.contains("Check") == true
@@ -122,7 +116,7 @@ class PlayFragment : BaseFragment<PlayBinding>() {
             }
         }
         viewBinding?.apply {
-            connectFormContainer.apply {
+            serverContainer.apply {
                 connectButton.setOnClickListener {
                     PlayConnectDialogFragment().show(childFragmentManager, "PlayConnect")
                 }
@@ -130,7 +124,7 @@ class PlayFragment : BaseFragment<PlayBinding>() {
                     PlayHostDialogFragment().show(childFragmentManager, "PlayHost")
                 }
             }
-            roomsContainer.apply {
+            roomContainer.apply {
                 createButton.apply {
                     setOnClickListener {
                         viewModel.createRoom()
@@ -142,7 +136,6 @@ class PlayFragment : BaseFragment<PlayBinding>() {
                     }
                 }
             }
-
             shareButton.setOnLongClickListener {
                 showToast("Copy Room ID to clipboard", view = shareButton); true
             }
@@ -158,44 +151,45 @@ class PlayFragment : BaseFragment<PlayBinding>() {
                     showToast("Room ID has been copied to clipboard.")
                 }
             }
-            tableContainer.startButton.setOnClickListener {
-                viewModel.startRoom()
-            }
-            tableContainer.foldButton.setOnClickListener {
-                viewModel.tableFold()
-            }
-            tableContainer.checkButton.setOnClickListener {
-                viewModel.tableCheck()
-            }
-            tableContainer.callButton.setOnClickListener {
-                viewModel.tableCall()
-            }
-            tableContainer.betButton.setOnClickListener {
-                viewModel.tableBet(tableContainer.betSlider.progress)
-            }
-            tableContainer.raiseButton.setOnClickListener {
-                viewModel.tableRaise(tableContainer.betSlider.progress)
-            }
-            tableContainer.allinButton.setOnClickListener {
-                viewModel.tableAllIn()
-            }
-            tableContainer.betSlider.setOnSeekBarChangeListener(object :
-                SeekBar.OnSeekBarChangeListener {
-                override fun onProgressChanged(
-                    seekBar: SeekBar?,
-                    progress: Int,
-                    fromUser: Boolean
-                ) {
-                    tableContainer.betLabel.text = progress.toString()
+            tableContainer.apply {
+                startButton.setOnClickListener {
+                    viewModel.startRoom()
                 }
-
-                override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                foldButton.setOnClickListener {
+                    viewModel.tableFold()
                 }
-
-                override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                checkButton.setOnClickListener {
+                    viewModel.tableCheck()
                 }
+                callButton.setOnClickListener {
+                    viewModel.tableCall()
+                }
+                betButton.setOnClickListener {
+                    viewModel.tableBet(betSlider.progress)
+                }
+                raiseButton.setOnClickListener {
+                    viewModel.tableRaise(betSlider.progress)
+                }
+                allinButton.setOnClickListener {
+                    viewModel.tableAllIn()
+                }
+                betSlider.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+                    override fun onProgressChanged(
+                        seekBar: SeekBar?,
+                        progress: Int,
+                        fromUser: Boolean
+                    ) {
+                        betLabel.text = progress.toString()
+                    }
 
-            })
+                    override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                    }
+
+                    override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                    }
+
+                })
+            }
         }
     }
 
@@ -214,7 +208,7 @@ class PlayFragment : BaseFragment<PlayBinding>() {
     }
 
     enum class Page {
-        ConnectForm, RoomForm, Table
+        Server, Room, Table
     }
 
 }

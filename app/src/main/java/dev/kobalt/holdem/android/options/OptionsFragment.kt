@@ -11,6 +11,22 @@ class OptionsFragment : BaseFragment<OptionsBinding>() {
         super.onViewCreated(view, savedInstanceState)
         viewBinding?.apply {
             backButton.apply { setOnClickListener { onBackPressed() } }
+            editNameButton.apply {
+                setOnClickListener {
+                    OptionsNameDialogFragment().show(
+                        childFragmentManager,
+                        "OptionsName"
+                    )
+                }
+            }
+            editServerButton.apply {
+                setOnClickListener {
+                    OptionsServerDialogFragment().show(
+                        childFragmentManager,
+                        "OptionsServer"
+                    )
+                }
+            }
         }
     }
 

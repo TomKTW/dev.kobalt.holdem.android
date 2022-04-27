@@ -59,6 +59,7 @@ open class ImageButtonView @JvmOverloads constructor(
             updateBackground()
         }
 
+    @Suppress("UNUSED_PARAMETER")
     private fun onInit(attrs: AttributeSet?, defStyleAttr: Int) {
         rippleTint = Color.BLACK
         rippleInset = dp(4)
