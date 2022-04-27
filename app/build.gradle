@@ -21,14 +21,14 @@ android {
             debuggable true
             minifyEnabled false
             shrinkResources false
-            resValue "string", "app_version", '2022.00'
+            resValue "string", "app_version", '2022.04.27'
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         release {
             debuggable false
             minifyEnabled true
             shrinkResources true
-            resValue "string", "app_version", '2022.00'
+            resValue "string", "app_version", '2022.04.27'
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -46,44 +46,14 @@ android {
 }
 
 dependencies {
-
+    // Android SVG Support
     implementation 'com.caverock:androidsvg-aar:1.4'
-
-    implementation 'androidx.core:core-ktx:1.7.0'
+    // AndroidX AppCompat
     implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.5.0'
-    implementation 'org.osmdroid:osmdroid-android:6.1.11'
-    implementation 'com.github.MKergall:osmbonuspack:6.8.0'
-    implementation "androidx.work:work-runtime-ktx:2.7.1"
-
-    implementation 'com.github.Zhuinden:simple-stack:2.6.2'
-    implementation 'com.github.Zhuinden:simple-stack-extensions:2.2.2'
-    implementation "androidx.preference:preference-ktx:1.2.0"
-
-    implementation "org.jetbrains.exposed:exposed-core:0.37.3"
-    implementation "org.jetbrains.exposed:exposed-dao:0.37.3"
-    implementation "org.jetbrains.exposed:exposed-jdbc:0.37.3"
-    implementation 'org.jetbrains.exposed:exposed-java-time:0.37.3'
-    implementation "com.h2database:h2:1.4.200"
-    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
-
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
-    // Simple Logging Facade
-    implementation "org.slf4j:slf4j-android:1.7.32"
-    // Ktor HTTP Logging
-    implementation "io.ktor:ktor-client-logging:1.6.1"
-    // Ktor HTTP Client OkHttp
-    implementation "io.ktor:ktor-client-okhttp:1.6.1"
-    // Ktor HTTP Client Websockets
-    implementation "io.ktor:ktor-client-websockets:1.6.1"
-    // KotlinX Coroutines Core
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0"
-    // KotlinX Coroutines Android
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0"
-    // KotlinX Serialization Json
-    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2"
     // AndroidX Core Kotlin Extensions
     implementation "androidx.core:core-ktx:1.7.0"
+    // AndroidX Fragment Kotlin Extensions
+    implementation "androidx.fragment:fragment-ktx:1.4.1"
     // AndroidX Lifecycle Extensions
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
     // AndroidX Lifecycle Java 8 Common
@@ -94,11 +64,34 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.1"
     // AndroidX Lifecycle ViewModel Kotlin Extensions
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
-
-    // AndroidX Fragment Kotlin Extensions
-    implementation "androidx.fragment:fragment-ktx:1.4.1"
-
+    // AndroidX Preferences Kotlin Extensions
+    implementation "androidx.preference:preference-ktx:1.2.0"
+    // Google Material Design
+    implementation 'com.google.android.material:material:1.5.0'
+    // Ktor HTTP Logging
+    implementation "io.ktor:ktor-client-logging:1.6.1"
+    // Ktor HTTP Client OkHttp
+    implementation "io.ktor:ktor-client-okhttp:1.6.1"
+    // Ktor HTTP Client Websockets
+    implementation "io.ktor:ktor-client-websockets:1.6.1"
+    // KotlinX Coroutines Core
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1"
+    // KotlinX Coroutines Android
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1"
+    // KotlinX Serialization Json
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2"
+    // Simple Logging Facade
+    implementation "org.slf4j:slf4j-android:1.7.32"
+    // Simple Stack Navigation
+    implementation 'com.github.Zhuinden:simple-stack:2.6.2'
+    // Simple Stack Navigation Extensions
+    implementation 'com.github.Zhuinden:simple-stack-extensions:2.2.2'
+    // Desugar JDK libraries
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
+    // JUnit
     testImplementation 'junit:junit:4.13.2'
+    // AndroidX JUnit
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    // AndroidX Espresso
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
