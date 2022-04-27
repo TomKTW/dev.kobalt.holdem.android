@@ -27,7 +27,6 @@ class PlayFragment : BaseFragment<PlayBinding>() {
                 viewBinding?.apply {
                     connectFormContainer.root.isVisible = it == Page.ConnectForm
                     roomsContainer.root.isVisible = it == Page.RoomForm
-                    // roomsContainer.root.isVisible = it == Page.RoomForm
                     tableContainer.root.isVisible = it == Page.Table
                     shareButton.isVisible = it == Page.Table
                     when (it) {
@@ -37,8 +36,7 @@ class PlayFragment : BaseFragment<PlayBinding>() {
                             subtitleLabel.text = null
                         }
                         Page.RoomForm -> {
-                            titleLabel.text =
-                                viewModel.stateFlow.replayCache.firstOrNull()?.player?.name
+                            titleLabel.text = "Server"
                             subtitleLabel.isVisible = false
                             subtitleLabel.text = null
                         }
@@ -107,6 +105,10 @@ class PlayFragment : BaseFragment<PlayBinding>() {
                         betButton.isVisible = it.currentTable?.actions?.contains("Bet") == true
                         raiseButton.isVisible = it.currentTable?.actions?.contains("Raise") == true
                         allinButton.isVisible = it.currentTable?.actions?.contains("AllIn") == true
+                        betLabel.isInvisible =
+                            !(it.currentTable?.actions?.contains("Bet") == true || it.currentTable?.actions?.contains(
+                                "Raise"
+                            ) == true)
                         betSlider.isInvisible =
                             !(it.currentTable?.actions?.contains("Bet") == true || it.currentTable?.actions?.contains(
                                 "Raise"
