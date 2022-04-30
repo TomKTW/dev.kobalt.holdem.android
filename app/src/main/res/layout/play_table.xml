@@ -5,51 +5,45 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <dev.kobalt.holdem.android.view.FrameView
+    <dev.kobalt.holdem.android.view.CircleLayout
+        android:id="@+id/tableCircle"
         android:layout_width="match_parent"
+        android:layout_weight="1"
         android:layout_height="0dp"
-        android:layout_weight="1">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <dev.kobalt.holdem.android.view.CircularView
-                android:id="@+id/tableCircle"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        app:cl_angleOffset="90"
+        app:cl_centerView="@id/cardStack">
 
         <dev.kobalt.holdem.android.view.StackView
             android:id="@+id/cardStack"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:gravity="center"
             android:orientation="horizontal" />
+    </dev.kobalt.holdem.android.view.CircleLayout>
 
-    </dev.kobalt.holdem.android.view.FrameView>
-
-    <dev.kobalt.holdem.android.view.LabelView
-        android:id="@+id/betLabel"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_margin="8dp"
-        android:gravity="center"
-        android:textColor="@color/white" />
-
-    <androidx.appcompat.widget.AppCompatSeekBar
-        android:id="@+id/betSlider"
+    <dev.kobalt.holdem.android.view.StackView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:thumbTint="@color/black" />
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:id="@+id/betSlider"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:thumbTint="@color/black" />
+
+        <dev.kobalt.holdem.android.view.LabelView
+            android:id="@+id/betLabel"
+            android:layout_width="64dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:gravity="center"
+            android:textColor="@color/white" />
+
+    </dev.kobalt.holdem.android.view.StackView>
 
     <dev.kobalt.holdem.android.view.StackView
         android:id="@+id/tableActionStack"

@@ -76,7 +76,7 @@ class PlayFragment : BaseFragment<PlayBinding>() {
                     tableContainer.apply {
                         tableCircle.apply {
                             removeAllViews()
-                            setCapacity(it.currentRoom?.players?.size ?: 0)
+                            tableCircle.addView(cardStack)
                             (it.currentTable?.players
                                 ?: it.currentRoom?.players)?.forEach { player ->
                                 addView(PlayerView(requireContext()).apply { apply(player) })
