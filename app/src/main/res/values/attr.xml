@@ -2,7 +2,7 @@
 <resources>
     <attr name="titleLabel" format="string" />
     <attr name="iconImage" format="reference" />
-    <declare-styleable name="CircleLayout">
+    <declare-styleable name="CircularView">
         <!-- (Optional) The ID of the child to show at the center of the layout. -->
         <attr name="cl_centerView" format="reference" />
 

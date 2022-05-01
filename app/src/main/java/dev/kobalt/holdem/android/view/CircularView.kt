@@ -8,36 +8,13 @@ import dev.kobalt.holdem.android.R
 import java.util.*
 
 /* https://github.com/francoiscampbell/CircleLayout */
-
-/**
- * Created by francois on 2016-01-12.
- */
-/**
- * @return The effective radius of the view, if it were round
- */
-val View.radius: Int
-    get() = Math.max(measuredWidth, measuredHeight) / 2
-
-/**
- * Lays out a view so that its center will be on `cx` and `cy`
- * @param cx   The X coordinate of the location in the parent in which to place the view
- * @param cy   The Y coordinate of the location in the parent in which to place the view
- */
-fun View.layoutFromCenter(cx: Int, cy: Int) {
-    val left = cx - measuredWidth / 2
-    val top = cy - measuredHeight / 2
-    val right = left + measuredWidth
-    val bottom = top + measuredHeight
-    layout(left, top, right, bottom)
-}
-
 /**
  * A layout that lays out its children in a circle
  * @param context      A view context. Cannot be an application context.
  * @param attrs        The set of attributes to customize the layout
  * @param defStyleAttr The default style to use
  */
-class CircleLayout @JvmOverloads constructor(
+class CircularView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,
@@ -110,15 +87,15 @@ class CircleLayout @JvmOverloads constructor(
     init {
         val attributes = context.obtainStyledAttributes(
             attrs,
-            R.styleable.CircleLayout,
+            R.styleable.CircularView,
             defStyleAttr,
             defStyleRes
         )
-        centerViewId = attributes.getResourceId(R.styleable.CircleLayout_cl_centerView, NO_ID)
-        angle = attributes.getFloat(R.styleable.CircleLayout_cl_angle, 0f)
-        angleOffset = attributes.getFloat(R.styleable.CircleLayout_cl_angleOffset, 0f)
-        radius = attributes.getInt(R.styleable.CircleLayout_cl_radius, FITS_LARGEST_CHILD)
-        direction = attributes.getInt(R.styleable.CircleLayout_cl_direction, COUNTER_CLOCKWISE)
+        centerViewId = attributes.getResourceId(R.styleable.CircularView_cl_centerView, NO_ID)
+        angle = attributes.getFloat(R.styleable.CircularView_cl_angle, 0f)
+        angleOffset = attributes.getFloat(R.styleable.CircularView_cl_angleOffset, 0f)
+        radius = attributes.getInt(R.styleable.CircularView_cl_radius, FITS_LARGEST_CHILD)
+        direction = attributes.getInt(R.styleable.CircularView_cl_direction, COUNTER_CLOCKWISE)
         attributes.recycle()
     }
 
@@ -263,4 +240,28 @@ class CircleLayout @JvmOverloads constructor(
          */
         const val CLOCKWISE = -1
     }
+
+
+    /**
+     * Created by francois on 2016-01-12.
+     */
+    /**
+     * @return The effective radius of the view, if it were round
+     */
+    val View.radius: Int
+        get() = Math.max(measuredWidth, measuredHeight) / 2
+
+    /**
+     * Lays out a view so that its center will be on `cx` and `cy`
+     * @param cx   The X coordinate of the location in the parent in which to place the view
+     * @param cy   The Y coordinate of the location in the parent in which to place the view
+     */
+    fun View.layoutFromCenter(cx: Int, cy: Int) {
+        val left = cx - measuredWidth / 2
+        val top = cy - measuredHeight / 2
+        val right = left + measuredWidth
+        val bottom = top + measuredHeight
+        layout(left, top, right, bottom)
+    }
+
 }

@@ -79,12 +79,31 @@ class PlayFragment : BaseFragment<PlayBinding>() {
                             tableCircle.addView(cardStack)
                             (it.currentTable?.players
                                 ?: it.currentRoom?.players)?.forEach { player ->
-                                addView(PlayerView(requireContext()).apply { apply(player) })
+                                addView(
+                                    PlayerView(requireContext()).apply { apply(player) },
+                                    dp(96),
+                                    dp(96)
+                                )
                             }
                         }
-                        cardStack.apply {
+                        val firstCard = it.currentTable?.hand?.getOrNull(0)
+                        val secondCard = it.currentTable?.hand?.getOrNull(1)
+                        val thirdCard = it.currentTable?.hand?.getOrNull(2)
+                        val fourthCard = it.currentTable?.hand?.getOrNull(3)
+                        val fifthCard = it.currentTable?.hand?.getOrNull(4)
+                        cardTopStack.apply {
                             removeAllViews()
-                            it.currentTable?.hand?.forEach {
+                            listOfNotNull(firstCard, secondCard, thirdCard).forEach {
+                                addView(SVGImageView(context).apply {
+                                    it.src?.let { HoldemCard.valueOf(it) }?.let {
+                                        setSVG(SVG.getFromAsset(context.assets, "${it.image}.svg"))
+                                    }
+                                }, dp(48), dp(48))
+                            }
+                        }
+                        cardBottomStack.apply {
+                            removeAllViews()
+                            listOfNotNull(fourthCard, fifthCard).forEach {
                                 addView(SVGImageView(context).apply {
                                     it.src?.let { HoldemCard.valueOf(it) }?.let {
                                         setSVG(SVG.getFromAsset(context.assets, "${it.image}.svg"))
@@ -94,11 +113,11 @@ class PlayFragment : BaseFragment<PlayBinding>() {
                         }
                         startButton.isVisible = it.currentRoom?.actions?.contains("Start") == true
                         foldButton.isVisible = it.currentTable?.actions?.contains("Fold") == true
-                        checkButton.isVisible = it.currentTable?.actions?.contains("Check") == true
-                        callButton.isVisible = it.currentTable?.actions?.contains("Call") == true
-                        betButton.isVisible = it.currentTable?.actions?.contains("Bet") == true
-                        raiseButton.isVisible = it.currentTable?.actions?.contains("Raise") == true
-                        allinButton.isVisible = it.currentTable?.actions?.contains("AllIn") == true
+                        checkButton.isVisible = false
+                        callButton.isVisible = false
+                        betButton.isVisible = false
+                        raiseButton.isVisible = false
+                        allinButton.isVisible = false
                         betLabel.isInvisible =
                             !(it.currentTable?.actions?.contains("Bet") == true || it.currentTable?.actions?.contains(
                                 "Raise"
@@ -110,7 +129,9 @@ class PlayFragment : BaseFragment<PlayBinding>() {
                         val currentPlayerUid = it.player?.uid
                         val currentPlayer =
                             it.currentTable?.players?.firstOrNull { it.uid == currentPlayerUid }
-                        betSlider.max = currentPlayer?.money ?: 0
+                        betSlider.max = (currentPlayer?.money ?: 0) / 10
+                        betSlider.progress = (it.currentTable?.highestBet ?: 0) / 10
+                        updateTableButtons()
                     }
                 }
             }
@@ -165,10 +186,10 @@ class PlayFragment : BaseFragment<PlayBinding>() {
                     viewModel.tableCall()
                 }
                 betButton.setOnClickListener {
-                    viewModel.tableBet(betSlider.progress)
+                    viewModel.tableBet(betSlider.progress * 10)
                 }
                 raiseButton.setOnClickListener {
-                    viewModel.tableRaise(betSlider.progress)
+                    viewModel.tableRaise(betSlider.progress * 10)
                 }
                 allinButton.setOnClickListener {
                     viewModel.tableAllIn()
@@ -179,7 +200,7 @@ class PlayFragment : BaseFragment<PlayBinding>() {
                         progress: Int,
                         fromUser: Boolean
                     ) {
-                        betLabel.text = progress.toString()
+                        updateTableButtons()
                     }
 
                     override fun onStartTrackingTouch(seekBar: SeekBar?) {
@@ -190,6 +211,37 @@ class PlayFragment : BaseFragment<PlayBinding>() {
 
                 })
             }
+        }
+    }
+
+    fun updateTableButtons() {
+        viewBinding?.tableContainer?.apply {
+            val progress = betSlider.progress
+            val currentState = viewModel.stateFlow.replayCache.firstOrNull()
+            val playerUid = currentState?.player?.uid
+            val isCurrent = currentState?.currentTable?.currentPlayer?.uid == playerUid
+            val inProgress = currentState?.currentTable?.phase != "Compulsory"
+            betLabel.text = (progress * 10).toString()
+            checkButton.isVisible =
+                currentState?.currentTable != null && inProgress && currentState.currentTable.highestBet == 0 && isCurrent && currentState.currentTable.actions.contains(
+                    "Check"
+                )
+            callButton.isVisible =
+                currentState?.currentTable != null && inProgress && currentState.currentTable.highestBet != 0 && isCurrent && currentState.currentTable.actions.contains(
+                    "Call"
+                )
+            betButton.isVisible =
+                currentState?.currentTable != null && inProgress && currentState.currentTable.highestBet == 0 && progress != betSlider.max && isCurrent && currentState.currentTable.actions.contains(
+                    "Bet"
+                )
+            raiseButton.isVisible =
+                currentState?.currentTable != null && inProgress && currentState.currentTable.highestBet != 0 && progress != betSlider.max && isCurrent && currentState.currentTable.actions.contains(
+                    "Raise"
+                )
+            allinButton.isVisible =
+                currentState?.currentTable != null && inProgress && progress == betSlider.max && isCurrent && currentState.currentTable.actions.contains(
+                    "AllIn"
+                )
         }
     }
 

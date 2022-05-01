@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <dev.kobalt.holdem.android.view.CircleLayout
+    <dev.kobalt.holdem.android.view.CircularView
         android:id="@+id/tableCircle"
         android:layout_width="match_parent"
         android:layout_weight="1"
@@ -17,9 +17,28 @@
             android:id="@+id/cardStack"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal" />
-    </dev.kobalt.holdem.android.view.CircleLayout>
+            android:orientation="vertical">
+
+            <dev.kobalt.holdem.android.view.StackView
+                android:id="@+id/cardTopStack"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal" />
+
+            <dev.kobalt.holdem.android.view.SpaceView
+                android:layout_width="match_parent"
+                android:layout_height="4dp" />
+
+            <dev.kobalt.holdem.android.view.StackView
+                android:id="@+id/cardBottomStack"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal" />
+        </dev.kobalt.holdem.android.view.StackView>
+
+    </dev.kobalt.holdem.android.view.CircularView>
 
     <dev.kobalt.holdem.android.view.StackView
         android:layout_width="match_parent"
