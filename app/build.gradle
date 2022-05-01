@@ -28,7 +28,7 @@ android {
             debuggable false
             minifyEnabled true
             shrinkResources true
-            resValue "string", "app_version", '2022.04.27'
+            resValue "string", "app_version", '2022.05.01'
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
